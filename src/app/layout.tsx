@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Montserrat, Geist } from "next/font/google";
+import { Anton, Bonheur_Royale, Montserrat } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -11,16 +8,31 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 });
 
+const anton = Anton({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-anton",
+});
+
+const bonheurRoyale = Bonheur_Royale({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-bonheur",
+});
+
 export const metadata: Metadata = {
-  title: "Portfolio | Junior Frontend Developer",
-  description: "Portfolio frontend developer",
+  title: "Sika Seftia | Junior Frontend Developer",
+  description: "Portfolio Sika Seftia, Junior Frontend Developer",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${anton.variable} ${bonheurRoyale.variable}`}
+    >
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

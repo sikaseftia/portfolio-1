@@ -7,9 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-montserrat);
   --font-heading: var(--font-sans);
+  --font-display: var(--font-anton);
+  --font-script: var(--font-bonheur);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,12 +50,14 @@
 }
 
 @theme {
-  /* Warna brand. Nilai ini estimasi dari screenshot, cek di Figma (Inspect > Fill) */
-  --color-brand-rose: #a9667d;   /* tombol Let's Talk, kartu testimoni */
-  --color-brand-maroon: #9a4a66; /* background hero */
-  --color-brand-gold: #edb55b;   /* aksen "Shaped Me", tombol Contact Me */
-  --color-brand-ink: #0f1320;    /* background Experiences & footer */
-  --color-brand-mist: #f5f5f7;   /* background FAQ */
+  /* Warna brand dari Figma (Inspect > Fill) */
+  --color-brand-maroon: #a53860; /* background hero */
+  --color-brand-gold: #f3b64c;   /* Secondary/100: FRONTEND, DEVELOPER, aksen */
+  --color-brand-ink: #0a0d12;    /* Neutral/950: background gelap */
+  --color-brand-white: #ffffff;  /* teks di atas background gelap */
+  /* Belum dikonfirmasi dari Figma, nilai sementara */
+  --color-brand-rose: #a9667d;
+  --color-brand-mist: #f5f5f7;
 
   /* Ukuran teks dari Text styles Figma. Display xl = 40/56 */
   --text-display-xl: 2.5rem;
