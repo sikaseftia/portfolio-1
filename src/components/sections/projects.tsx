@@ -33,21 +33,24 @@ export function Projects() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {projects.map((p) => (
-            <Reveal key={p.title} className="group flex flex-col overflow-hidden rounded-2xl bg-neutral-50 transition-shadow hover:shadow-xl">
-              <div className="relative aspect-[4/3] overflow-hidden">
+            <Reveal key={p.title} className="group flex flex-col rounded-2xl bg-neutral-50 transition-shadow hover:shadow-xl">
+              <div className="relative">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
+                  <Image
+                    src={p.src}
+                    alt={p.title}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                {/* Badge di luar area gambar agar melapisi tepi frame, seperti di Figma */}
                 <Image
-                  src={p.src}
-                  alt={p.title}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <Image
-                  src="/images/badge/best-portfolio.png"
+                  src="/images/badge/best-portfolio-layered.png"
                   alt="Best Portfolio"
-                  width={96}
-                  height={28}
-                  className="absolute top-3 left-3 h-auto w-auto"
+                  width={144}
+                  height={43}
+                  className="absolute -top-2 -left-2 z-10 h-auto w-36"
                 />
               </div>
               <div className="flex items-center justify-between gap-4 p-5">

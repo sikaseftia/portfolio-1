@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -52,15 +51,25 @@ export function Contact() {
         </Reveal>
 
         <Reveal className="relative">
+          {/* Avatar di belakang kartu: bagian bawahnya tertutup kartu, dan menembus section di atasnya */}
           <Image
-            src="/images/avatar/sika-avatar.png"
+            src="/images/contact/contact-avatar.png"
             alt=""
-            width={96}
-            height={96}
+            width={600}
+            height={656}
             aria-hidden
-            className="absolute -top-14 left-1/2 z-10 size-24 -translate-x-1/2 object-contain"
+            className="pointer-events-none absolute bottom-full left-1/2 z-0 h-auto w-32 -translate-x-1/2 translate-y-[33px] md:w-40 md:translate-y-[42px]"
           />
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5 rounded-2xl border border-neutral-200 bg-white p-6 pt-12 shadow-sm md:p-8 md:pt-12">
+          {/* Tangan di depan tepi atas kartu, memberi kesan berdimensi */}
+          <Image
+            src="/images/contact/contact-hands.png"
+            alt=""
+            width={1086}
+            height={362}
+            aria-hidden
+            className="pointer-events-none absolute bottom-full left-1/2 z-20 h-auto w-30 -translate-x-1/2 translate-y-[14px] md:w-38 md:translate-y-[15px]"
+          />
+          <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-5 rounded-2xl border border-neutral-200 bg-white p-6 pt-12 shadow-sm md:p-8 md:pt-12">
             <div className="flex flex-col gap-2">
               <Label htmlFor="name">Name</Label>
               <Input id="name" placeholder="Enter your name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
@@ -73,30 +82,61 @@ export function Contact() {
               <Label htmlFor="message">Message</Label>
               <Textarea id="message" placeholder="Enter your message" rows={5} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
             </div>
-            <Button type="submit" className="h-11 w-full rounded-full bg-brand-rose text-brand-white hover:bg-brand-rose/90">
+            <button
+              type="submit"
+              className="flex h-8 w-full items-center justify-center rounded-2xl bg-brand-rose text-sm font-semibold text-brand-white transition-colors hover:bg-brand-rose/90 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+            >
               Let&apos;s Talk
-            </Button>
+            </button>
           </form>
         </Reveal>
       </div>
 
       <Dialog open={result !== null} onOpenChange={(open) => !open && setResult(null)}>
-        <DialogContent className="max-w-sm text-center">
+        <DialogContent
+          showCloseButton={false}
+          className="!gap-0 !p-0 text-center sm:!max-w-[480px]"
+        >
           {result?.ok ? (
             <>
-              <Image src="/images/contact/success.png" alt="" width={120} height={120} className="mx-auto h-auto w-28" />
-              <DialogHeader>
-                <DialogTitle className="text-center">Message Sent!</DialogTitle>
-                <DialogDescription className="text-center">Terima kasih, pesan Anda sudah diterima.</DialogDescription>
-              </DialogHeader>
+              <div className="relative h-[210px] rounded-t-2xl bg-[#E9B45D]">
+                <Image src="/images/contact/success.png" alt="" width={263} height={294} aria-hidden className="pointer-events-none absolute left-1/2 top-[-60px] z-10 h-[270px] w-auto -translate-x-1/2" />
+              </div>
+              <div className="flex flex-col gap-3 px-8 pt-8 pb-8">
+                <DialogTitle className="text-xl font-bold text-brand-ink">Got Your Message!</DialogTitle>
+                <DialogDescription className="text-sm text-neutral-600">
+                  Really appreciate you reaching out. I&apos;ll be in touch soon.
+                </DialogDescription>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setResult(null);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="mt-4 h-11 w-full rounded-full bg-[#AA657E] text-sm font-semibold text-brand-white transition-colors hover:bg-[#AA657E]/90 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                >
+                  Back to Home
+                </button>
+              </div>
             </>
           ) : (
             <>
-              <Image src="/images/contact/failed.png" alt="" width={120} height={120} className="mx-auto h-auto w-28" />
-              <DialogHeader>
-                <DialogTitle className="text-center">Message Failed</DialogTitle>
-                <DialogDescription className="text-center">{result?.reason}</DialogDescription>
-              </DialogHeader>
+              <div className="relative h-[210px] rounded-t-2xl bg-[#E6E7EA]">
+                <Image src="/images/contact/failed.png" alt="" width={261} height={289} aria-hidden className="pointer-events-none absolute left-1/2 top-[-60px] z-10 h-[270px] w-auto -translate-x-1/2" />
+              </div>
+              <div className="flex flex-col gap-3 px-8 pt-8 pb-8">
+                <DialogTitle className="text-xl font-bold text-brand-ink">Message Failed to Send</DialogTitle>
+                <DialogDescription className="text-sm text-neutral-600">
+                  Sorry about that. Please check your connection and try again.
+                </DialogDescription>
+                <button
+                  type="button"
+                  onClick={() => setResult(null)}
+                  className="mt-4 h-11 w-full rounded-full bg-[#AA657E] text-sm font-semibold text-brand-white transition-colors hover:bg-[#AA657E]/90 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                >
+                  Try Again
+                </button>
+              </div>
             </>
           )}
         </DialogContent>

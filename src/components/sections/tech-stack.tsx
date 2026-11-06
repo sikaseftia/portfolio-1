@@ -17,7 +17,7 @@ export function TechStack() {
         <SectionHeading
           title="Code, Design, and Everything in Between"
           description="These are the technologies that power my workflow and bring ideas to life."
-          className="[&_h2]:normal-case [&_h2]:text-neutral-900 [&_h2]:text-3xl [&_h2]:md:text-5xl"
+          className="[&_h2]:font-sans [&_h2]:font-bold [&_h2]:normal-case [&_h2]:text-neutral-900 [&_h2]:text-3xl [&_h2]:md:text-5xl [&_p]:max-w-none [&_p]:text-sm [&_p]:text-neutral-600 [&_p]:md:text-base"
         />
         <div className="mt-16 grid grid-cols-2 gap-6 md:grid-cols-4">
           {techs.map((t) => (
